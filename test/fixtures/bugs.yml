@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  deadline: 2022-07-29 15:31:33
+  type: 
+  status: 1
+  project: one
+  creator: one
+  developer: one
+
+two:
+  title: MyString
+  description: MyString
+  deadline: 2022-07-29 15:31:33
+  type: 
+  status: 1
+  project: two
+  creator: two
+  developer: two
