@@ -1,0 +1,44 @@
+<br>
+<div class="container">
+  <table class="table table-hover table-bordered mt-3" id="bug_table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Status</th>
+        <th scope="col">Type</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Developer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><%= @bug.id %></th>
+        <td><%= @bug.title %></td>
+        <td><%= @bug.description %></td>
+        <td><%= @bug.deadline.to_s(:long) %></td>
+        <td id="bug_status"><%= @bug.status %></td>
+        <td><%= @bug.bug_type %></td>
+        <td><%= @bug.creator_email %></td>
+        <td id="dev_email"><%= @bug.developer_email if @bug.developer %></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <% if @bug.screenshot.attached? %>
+    <strong class="my-3">Screenshot:</strong><br />
+    <%= cl_image_tag @bug.screenshot.key, width: 400, crop: "pad", class: "img-thumbnail rounded" %><br>
+  <% end %>
+  <br><br>
+  <%  if policy(@bug).assign? && !(@bug.developer) %>
+    <%= link_to 'Assign bug', assign_project_bug_path(@bug.project, @bug), method: :post, class: "btn btn-sm btn-success px-3 assign_button" %>
+  <% end %>
+  <br><br>
+  <% if policy(@bug).update_status?%>
+    <strong>Update Status:</strong><br>
+    <%= render partial: 'bug_status', locals: {bug: @bug}%>
+  <% end %>
+  <br><br><%= link_to 'Back', project_bugs_path(@bug.project), class: "btn btn-sm px-3 btn-primary" %>
+</div>

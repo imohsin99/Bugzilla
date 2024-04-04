@@ -1,0 +1,19 @@
+<div class="card col-4 m-3 px-0" style="width: 18rem;" id="edit_bud_<%= bug.id %>">
+  <div class="card-header">
+    <%= bug.project_title %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= bug.title %></h5>
+    <h6 class="card-subtitle my-2 text-muted"><%= bug.deadline.to_s(:long)  %></h6>
+    <p class="card-text pt-1"><%= bug.description %></p>
+    <p class="card-text"><%= bug.status.capitalize %></p>
+    <p class="card-text"><%= bug.creator_email %></p>
+    <%= link_to 'Show', project_bug_path( bug.project, bug), class: "btn btn-sm px-3 btn-outline-dark" %>
+    <% if current_user.qa? %>
+      <%= link_to 'Update', edit_project_bug_path( bug.project, bug), class: "btn btn-sm px-2 btn-outline-dark" %>
+      <%= link_to 'Delete', project_bug_path(bug.project, bug), class: "btn btn-outline-danger btn-sm px-2",
+              method: :delete,
+              data: {confirm: 'Are u sure?' } %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<tr>
+  <td><%= fetch_user(assigned_user).name %></td>
+  <td><%= fetch_user(assigned_user).user_type.capitalize %></td>
+  <td><%= fetch_user(assigned_user).email %></td>
+  <td><%= link_to 'Remove', project_remove_user_path(assigned_user.project, assigned_user),
+   method: :delete, remote: true, class: "btn btn-danger btn-sm px-3" if current_user.manager? %></td>
+</tr>

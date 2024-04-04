@@ -1,0 +1,52 @@
+<h2 class="text-center mb-2 form-label">Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="field my-3">
+    <%= f.label :email, class: "form-label"%><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :name, class: "form-label" %><br />
+    <%= f.text_field :name, autofocus: true, required: true, class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= f.label :password, class: "form-label" %> <i class="form-text">(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", required: true, class: "form-control" %>
+    <div id="passwordHelpBlock" class="form-text">
+      Your password must be atleast 6 characters long.
+    </div>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :password_confirmation, class: "form-label" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :current_password, class: "form-label" %><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: "form-control" %>
+    <div id="passwordHelpBlock" class="form-text">
+      We need your current password to confirm your changes.
+    </div>
+  </div>
+
+  <div class="actions mb-3 text-center">
+    <%= f.submit "Update", class: "btn btn-sm px-3 btn-primary" %>
+  </div>
+<% end %>
+
+<h3 class="text-center my-2 form-label">Cancel my account</h3>
+
+<p class="text-center my-2 form-label">Unhappy?
+<div class="actions mb-3 text-center">
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-sm btn-outline-danger px-3" %></p>
+</div>
+<%= link_to "Back", root_path, class: "btn btn-sm btn-primary px-3" %>

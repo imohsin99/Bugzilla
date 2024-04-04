@@ -1,0 +1,39 @@
+<h2 class="text-center mb-2 form-label">Sign Up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="field my-3">
+    <%= f.label :email, class: "form-label" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :name, class: "form-label" %><br />
+    <%= f.text_field :name, autofocus: true, required: true, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :user_type, class: "form-label" %><br />
+    <%= f.select :user_type, ["manager", "developer", "qa"], {selected: "manager"}, {class: "form-select"} %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, autocomplete: "new-password", required: true, class: "form-control" %>
+    <div id="passwordHelpBlock" class="form-text">
+      Your password must be atleast 6 characters long.
+    </div>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :password_confirmation, class: "form-label" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control" %>
+  </div>
+
+  <div class="actions mb-3 text-center mt-4">
+    <%= f.submit "Sign up", class: "btn btn-primary w-25" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

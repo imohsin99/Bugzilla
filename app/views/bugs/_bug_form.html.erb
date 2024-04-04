@@ -1,0 +1,34 @@
+<%= form_with model: [ @project, @bug ], local: true do |form| %>
+  <% if @bug.errors.any? %>
+    <div id="error_explanation", class="mb-3">
+      <ul class="list-group">
+        <% @bug.errors.full_messages.each do |msg| %>
+          <li class="list-group-item list-group-item-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %><br>
+    <%= form.text_field :title, required: true, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %><br>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :bug_type, class: "form-label" %><br>
+    <%= form.select :bug_type, ["feature", "bug"], {selected: "feature"}, {class:"form-select"}%>
+  </div>
+  <div class="mb-3">
+    <%= form.label :deadline, class: "form-label" %><br>
+    <%= form.datetime_field :deadline, min: Date.current, class: "form-control w-100" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :screenshot, class: "form-label" %>
+    <%= form.file_field :screenshot, { accept: 'image/png,image/gif', class: "form-control"} %>
+  </div>
+  <div class="my-3 text-center">
+    <%= form.submit "Submit", class: "btn btn-sm px-3 btn-success" %>
+  </div>
+<% end %>

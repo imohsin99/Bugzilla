@@ -1,0 +1,26 @@
+<div class="card mb-3 shadow-sm" id="edit_project_<%= project.id %>">
+  <div class="card-header">
+    <p class="card-text">Manager</p><%= project.manager_email %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= project.title %></h5>
+    <p class="card-text"><%= project.description %></p>
+    <%= link_to "Show", project_path(project), class: "btn btn-outline-dark mx-1 btn-sm px-4" %>
+    <% if current_user.manager? %>
+      <%= link_to "Edit", edit_project_path(project), class: "btn btn-outline-dark mx-1 btn-sm px-4" %>
+      <%= link_to 'Delete', project_path(project), class: "btn btn-outline-danger mx-1 btn-sm px-4",
+            method: :delete, remote: true,
+            data: {confirm: 'Are u sure?' } %>
+    <% end %>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="row">
+      <div class="col-1 mx-1">
+        <%= link_to 'Bugs', project_bugs_path(project), class: "text-decoration-none text-muted" %> <%= project.bugs.count %>
+      </div> |
+      <div class="col-1 mx-4">
+        <%= link_to 'Users', project_path(project), class: "text-decoration-none text-muted" %> <%= project.assigned_users.count %>
+      </div>
+    </div>
+  </div>
+</div>

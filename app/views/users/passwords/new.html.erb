@@ -1,0 +1,16 @@
+<h2 class="text-center mb-2 form-label">Forgot Password</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <div class="field mx-2">
+    <%= f.label :email, class: "form-label" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control" %>
+  </div>
+
+  <div class="actions mb-5 text-center">
+    <%= f.submit "Send reset password mail", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

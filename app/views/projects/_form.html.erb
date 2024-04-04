@@ -1,0 +1,33 @@
+<%= form_with model: @project, local: true do |form| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation", class="mb-3">
+      <ul class="list-group">
+        <% @project.errors.full_messages.each do |msg| %>
+          <li class="list-group-item list-group-item-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label"%><br>
+    <%= form.text_field :title, required: true, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %><br>
+    <%= form.text_area :description, required: true, class: "form-control" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label 'Assign Users', class: "form-label"%><br>
+    <%= form.collection_select :users, assign_user_to_projects(@project),
+    :id, :name_with_email, { selected: assign_selected_ids(@project) },
+    {multiple: true, class:"form-select", size: 3, placeholder: "Add Users", include_blank: false} %>
+  </div>
+
+  <div class="mb-3 text-center">
+    <%= form.submit "Submit", class: "btn btn-success btn-sm px-4" %>
+  </div>
+
+<% end %>

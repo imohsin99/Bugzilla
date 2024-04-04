@@ -1,0 +1,4 @@
+<%= form_tag status_update_project_bug_path(bug.project, bug), method: :post,remote: true do |form| %>
+  <%= select_tag :status, options_for_select(statuses_for_bugs(bug).keys), {class: "form-select w-25 my-2"} %>
+  <%= submit_tag "Update Bug Status", class: 'btn btn-sm px-3 btn-outline-success darken-3 mt-2' %>
+<% end %>

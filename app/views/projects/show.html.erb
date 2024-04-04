@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tile</th>
+        <th scope="col">Description</th>
+        <th scope="col">Manager</th>
+        <th scope="col">Bugs</th>
+        <th scope="col">Users</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><%= @project.id %></th>
+        <td><%= @project.title %></td>
+        <td><%= @project.description %></td>
+        <td><%= @project.manager_email %></td>
+        <td><%= @project.bugs.count %></td>
+        <td><%= @project.assigned_users.count %></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <% unless @project.assigned_users.count == 0 %>
+    <div>
+      <h6>Assigned Developers/QAs</h6>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <%= render partial: "assigned_users", collection: @project.assignments, as: :assigned_user %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  <br>
+  <strong>Bugs Count: <%= @project.bugs.count %></strong>
+  <br>
+  <%= link_to 'Show Bugs', project_bugs_path(@project),
+   class: "btn btn-sm px-4 btn-primary" %><%= link_to 'Add Bug', new_project_bug_path(@project),
+    class: "btn btn-sm px-4 btn-primary mx-2" if current_user.qa? %>
+  <br><br><%= link_to "Back", projects_path, class: "btn btn-sm px-4 btn-primary mt-3" %>
+</div>

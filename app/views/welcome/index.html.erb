@@ -1,0 +1,11 @@
+<h1 class="text-center">Welcome to Bugzilla</h1>
+<div id="user-nav" class="alert text-center px-2 mx-2">
+  <% if user_signed_in? %>
+    <%= link_to "Continue", projects_path, class: "btn btn-outline-secondary mb-3"%>
+    <p class="mx-2">Signed in as <%= current_user.email%> ( <%= current_user.user_type.capitalize %> ). Not you?</p>
+    <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-danger"%>
+  <% else %>
+    <p class="text-center">You must be signed in order to continue</p>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-secondary"%>
+  <% end %>
+</div>

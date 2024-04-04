@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="d-flex justify-content-center shadow-sm mt-4 p-4">Bugs</h1>
+  <div class="row mt-3">
+    <%= render @bugs %>
+    <%= paginate @bugs %>
+  </div>
+  <%= link_to 'Back', project_path(@project), class: "btn btn-sm px-4 btn-primary mt-3 mb-3" %>
+</div>
